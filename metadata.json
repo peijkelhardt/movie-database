@@ -1,0 +1,6 @@
+{
+    "name": "Movie Database",
+    "identifier": "com.m7.app.moviedatabase",
+    "version": "1.0.0",
+    "icon": "./static/icon.png"
+}
