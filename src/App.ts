@@ -17,16 +17,24 @@
  * limitations under the License.
  */
 
-import { Lightning, Utils } from "@lightningjs/sdk";
+import { Lightning, Router, Utils } from "@lightningjs/sdk";
+import { routes } from "./lib/routes";
 
-export default class App extends Lightning.Component {
+export default class App extends Router.App {
     static getFonts() {
         return [
             { family: "Regular", url: Utils.asset("fonts/Roboto-Regular.ttf") },
+            { family: "Icomoon", url: Utils.asset("fonts/icomoon.ttf") },
         ];
     }
 
-    static _template() {
-        return {};
+    _setup(): void {
+        Router.startRouter(routes, this);
+    }
+
+    static _template(): Lightning.Component.Template {
+        return {
+            ...super._template(),
+        };
     }
 }
