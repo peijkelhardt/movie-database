@@ -1,5 +1,6 @@
 import { Router } from "@lightningjs/sdk";
-import { Splash } from "../pages";
+import { Library, Splash } from "../pages";
+import { getPopularMovies } from "./api";
 
 export const routes: Router.Config = {
     root: "splash",
@@ -7,6 +8,13 @@ export const routes: Router.Config = {
         {
             path: "splash",
             component: Splash,
+        },
+        {
+            path: "library",
+            component: Library,
+            before: async (page: Library) => {
+                page.moviesResponse = await getPopularMovies();
+            },
         },
     ],
 };

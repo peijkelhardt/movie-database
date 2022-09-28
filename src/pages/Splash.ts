@@ -1,4 +1,4 @@
-import { Lightning, Utils } from "@lightningjs/sdk";
+import { Lightning, Router, Utils } from "@lightningjs/sdk";
 
 interface SplashTemplateSpec extends Lightning.Component.TemplateSpec {
     Background: object;
@@ -60,6 +60,11 @@ export default class Splash
 
     _init() {
         this.loaderAnimation.start();
+
+        // After 3 seconds, navigate to Library page
+        setTimeout(() => {
+            Router.navigate("library", false);
+        }, 3000);
     }
 
     _inactive() {
