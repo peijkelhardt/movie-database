@@ -1,7 +1,7 @@
-import { Lightning } from "@lightningjs/sdk";
+import { Lightning, Router } from "@lightningjs/sdk";
 import { Carousel } from "@lightningjs/ui";
 import { getImageUrl, IMoviesResponse } from "../lib/api";
-import Asset from "../components/Asset";
+import { Asset } from "../components/Asset";
 import AssetInfo from "../components/AssetInfo";
 
 interface LibraryTemplateSpec extends Lightning.Component.TemplateSpec {
@@ -61,6 +61,7 @@ export default class Library
                     type: Asset,
                     assetIndex: index,
                     imagePath: movie.poster_path,
+                    imageSize: "w342"
                 };
             });
 
@@ -96,5 +97,12 @@ export default class Library
 
     _handleBack() {
 
+    }
+        
+    _handleEnter() {
+        if (this._moviesResponse.results && this._moviesResponse.results.length) {
+            const movie = this._moviesResponse.results[this._movieCarousel.currentItem.assetIndex];
+            Router.navigate(`details/${movie.id}`);
+        }
     }
 }
